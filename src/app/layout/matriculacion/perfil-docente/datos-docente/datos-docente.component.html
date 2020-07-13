@@ -1,0 +1,96 @@
+<h1>DATOS PERSONALES {{docente.identificacion}}</h1>
+<div class="container">
+
+    <form name="datosPersnalesform" method="post" #formCtrl="ngForm" *ngFor="let docente of docentesData" enctype="multipart/form-data">
+        
+        <div class="form-group row">
+            <div class="col-lg-3">
+                <label for="id">Cédula-Pasaporte</label>
+                <input id="id" [(ngModel)]="docente.identificacion" type="text" class="form-control" name="identificacion" [ngModel]="docente.identificacion" disabled="true">
+            </div>
+            <div class="col-lg-4">
+                <label for="typeahead-format">Tipo Identificación:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="tipo_identificacion" [(ngModel)]="docente.tipo_identificacion" disabled="true">
+            </div>
+            <div class="col-lg-5">
+                <label for="typeahead-format">Estado:</label>
+                <input id="typeahead-format" type="text" class="form-control text-uppercase" [(ngModel)]="docente.estado" name="estado" disabled="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-3">
+                <label for="typeahead-format">Primer Apellido:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="apellido1" [(ngModel)]="docente.apellido1" disabled="true" />
+            </div>
+            <div class="col-lg-3">
+                <label for="typeahead-format">Segundo Apellido:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="apellido2" [(ngModel)]="docente.apellido2" />
+            </div>
+            <div class="col-lg-3">
+                <label for="typeahead-format">Primer Nombre:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="nombre1" [(ngModel)]="docente.nombre1" disabled="true">
+            </div>
+            <div class="col-lg-3">
+                <label for="typeahead-format">Segundo Nombre:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="nombre2" [(ngModel)]="docente.nombre2">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-6">
+                <label for="typeahead-format">Correo Institucional:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="correo" [(ngModel)]="docente.correo_institucional" disabled="true" />
+            </div>
+            <div class="col-lg-6">
+                <label for="typeahead-format">Correo Personal:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="coreo" [(ngModel)]="docente.correo_personal" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-4">
+                <label for="typeahead-format">Teléfono:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="telefono" [(ngModel)]="docente.telefono" />
+            </div>
+            <div class="col-lg-4">
+                <label for="typeahead-format">
+                      <b class="text-danger"></b> Sexo
+                  </label>
+                <!-- <label for="typeahead-format">Sexo:</label>
+                <input id="typeahead-format" type="text" class="form-control" name="Sexo" [(ngModel)]="docente.sexo" /> -->
+                <select name="Sexo" id="typeahead-format" class="form-control" [(ngModel)]="docente.sexo">
+                    <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMENINO">FEMENINO</option>
+  </select>
+            </div>
+            <div class="col-lg-4">
+                <label for="typeahead-format">Fecha de Nacimiento:</label>
+                <input id="typeahead-format" type="date" class="form-control" name="tipo" [(ngModel)]="docente.fecha_nacimiento" />
+            </div>
+            <!-- <td>
+                <button value="Actualizar" title="Actualizar" class="form-control" (click)="editar(docente.tipo_identificacion)">Actualizar</button>
+            </td> -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="updateDocente()"> Actualizar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- <table class=" table ">
+    <thead class="thead-dark ">
+      <tr>
+
+        <th scope="col ">NOMBRE</th>
+        <th scope="col ">CORREO INSTITUCIONAL</th>
+        <th scope="col ">ESTADO</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of docentes ">
+        <td>{{d.nombre1}}</td>
+        <td>{{d.correo_institucional}}</td>
+        <td>{{d.estado}}</td>
+
+      </tr>
+    </tbody>
+  </table> -->

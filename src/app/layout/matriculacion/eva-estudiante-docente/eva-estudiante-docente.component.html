@@ -1,0 +1,90 @@
+<div class="row" *ngIf="flagInformacionEstudiante">
+    <div class="col-xl-4 mt-5" *ngFor="let asignaturaMatricula of asignaturasMatricula">
+        <div class="card">
+            <div style="height: 100px;">
+                <div class="card-header bg-white h-100 text-center">
+                    <p (click)="mostrarPreguntas()">
+                        ({{asignaturaMatricula.codigo}})
+                    </p>
+                    <p (click)="mostrarPreguntas()">
+                        {{asignaturaMatricula.nombre}}
+                    </p>
+                </div>
+            </div>
+            <div class="card-body text-center">
+
+                <p>
+                    {{asignaturaMatricula.apellido1 + ' ' + asignaturaMatricula.nombre1}}
+                </p>
+                <button class="btn btn-primary" *ngIf="asignaturaMatricula.estado_evaluacion!=true" (click)="mostrarPreguntas(asignaturaMatricula.idAsignatura,asignaturaMatricula.user_id)">
+
+                    EVALUAR
+                </button>
+                <button disabled class="btn" *ngIf="asignaturaMatricula.estado_evaluacion==true">
+                    EVALUADO
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-7" *ngIf="!flagInformacionEstudiante">
+            <div class="card" style="width: 55rem;">
+                <div class="card text-center"><br>
+                    <h3>INFORMACIÓN DOCENTE</h3>
+                </div><br>
+                <div class="container">
+                    <div *ngFor="let item of respuesta">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <i class="fa fa-user-circle-o">&nbsp;</i><b>Nombre:</b>&nbsp;{{item.nombre1}}
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fa fa-user-circle-o">&nbsp;</i><b>Apellido:</b>&nbsp;{{item.apellido1}}
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fa fa-envelope-o">&nbsp;<b>Correo:</b></i>&nbsp;{{item.correo_institucional}}
+                            </div>
+                            <div class="col-md-12" *ngIf="resultado">
+                                <i class="fa fa-book">&nbsp;<b>Asignatura:</b></i>&nbsp; {{resultado.nombre}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+
+            <div class="card" style="width: 55rem;">
+                <div class="card text-center">
+                    <h4>FORMULARIO EVALUACIÓN DOCENTE</h4>
+                </div><br>
+                <div class="card-body">
+                    <div class="container">
+                        <div *ngFor="let mostrar of listarespuesta[0]; let i = index ">
+                            <div class="row">
+                                <div class="col-lg-10 form-control ml-5">
+                                    <label for="{{mostrar.orden}}"><b>{{ i + 1 + '. '}}</b> {{ mostrar.pregunta}}</label>
+                                </div>
+                            </div>
+
+                            <div class="row ml-4 mb-4 mt-1">
+                                <div class="col-lg-3" *ngFor="let respuesta of datademo[i];">
+                                    <div class="form-check">
+                                        <input class="form-check-input" (change)="addListPreOpc1(i,respuesta)" name="exampleRadios{{i}}" id="exampleRadios{{i}}" type="radio" value="{{respuesta.valor}}">{{respuesta.nombre}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <button class="btn btn-primary btn-lg" (click)="calificar()"><i class="fa fa-pencil-square-o"
+                        arian-hidden="true">CALIFICAR</i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
